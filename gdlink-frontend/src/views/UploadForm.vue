@@ -16,19 +16,6 @@
             required
           />
         </div>
-
-        <!-- Owner -->
-        <div class="mb-3">
-          <label for="owner" class="form-label">Owner:</label>
-          <input
-            type="text"
-            id="owner"
-            v-model="resource.owner"
-            class="form-control"
-            placeholder="Enter the owner"
-            required
-          />
-        </div>
   
         <!-- Category Dropdown -->
         <div class="mb-3">
@@ -217,6 +204,7 @@ import SweetAlert from '@/Utils/SweetAlertUtils';
       if (sessionData) {
         const userSession = JSON.parse(sessionData);
         this.userId = userSession.user_id;
+        this.resource.owner = userSession.name;
       }
         this.displayCategoryList();
         this.getGroupData();
@@ -275,7 +263,8 @@ import SweetAlert from '@/Utils/SweetAlertUtils';
       addReceiverField() {
         this.resource.receivers.push({userId:''});
       },
-      async submitForm() {  
+      async submitForm() {
+
         if(this.resource.receivers.length>0){
           this.resource.receivers = this.resource.receivers
           .filter((item) => item.userId.trim() !== "")  
