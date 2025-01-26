@@ -70,7 +70,6 @@
 
 <script>
 import GroupMemberService from '../service/GroupMemberService';
-import Swal from 'sweetalert2';
 import SweetAlert from '@/Utils/SweetAlertUtils';
 
 export default {
@@ -79,10 +78,10 @@ export default {
             group: [],
             groupMembers: [],
             memberEmail: null,
-            userId: null,
             errors: {
                 memberEmail: ''
-            }
+            },
+            userEmail: null
         };
     },
     methods:{
@@ -97,15 +96,22 @@ export default {
             if (!this.memberEmail) {
                 this.errors.memberEmail = "Email is required.";
                 isValid = false;
-                } else if (!emailPattern.test(this.memberEmail)) {
+            } else if (!emailPattern.test(this.memberEmail)) {
                 this.errors.memberEmail = "Please enter a valid email address.";
                 isValid = false;
+            } else if(this.memberEmail.trim() === this.userEmail.trim()){
+                this.errors.memberEmail = "You cannot add yourself to the group";
+                isValid = false;
             }
-
+            
+            if(!isValid){
+                this.memberEmail = '';
+            }
             return isValid;
         },
-        openModalForMembers(group) {
+        openModalForMembers(group,userEmail) {
             this.group = group;
+            this.userEmail = userEmail;
             this.displayMemberList();
             this.resetForm();
         },
@@ -135,38 +141,6 @@ export default {
                 SweetAlert.showSwal('Error!', 'An unexpected error occurred. Please try again later.', 'error');
             }
             this.$emit('refresh');
-        },
-        async updateMemberRole(member){
-            try {
-                const data = await GroupMemberService.updateMemberRole(member);
-                if (data.success) {
-                Swal.fire({
-                    title: 'Updated!',
-                    text: data.message,
-                    icon: 'success',
-                    timer: 2000,
-                    showConfirmButton: false,
-                });
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: data.message,
-                        icon: 'error',
-                        timer: 2000,
-                        showConfirmButton: false,
-                    });
-                }
-                this.displayMemberList();
-            } catch (error) {
-                    console.error('Error updating role:', error);
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'An unexpected error occurred. Please try again later.',
-                        icon: 'error',
-                        timer: 2000,
-                        showConfirmButton: false,
-                    });
-            }
         },
         async removeMember(groupMemberId){
             await SweetAlert.deleteSwal({

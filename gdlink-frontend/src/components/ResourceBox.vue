@@ -26,8 +26,8 @@ export default {
     categoryColor: { type: String, required: true }, 
     refName: { type: String, required: true },
     description: { type: String, required: false },
-    sessem: { type: String, required: true },
-    categoryName: { type: String, required: true }
+    sessem: { type: String, required: false },
+    categoryName: { type: String, required: false }
   },
   data() {
     return {

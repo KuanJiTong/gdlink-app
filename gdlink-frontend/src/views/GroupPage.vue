@@ -71,6 +71,7 @@ export default {
   data() {
       return {
         userId: null,
+        userEmail: null,
         groups: []       
       };
     },
@@ -84,6 +85,7 @@ export default {
       if (sessionData) {
             const userSession = JSON.parse(sessionData);
             this.userId = userSession.user_id;
+            this.userEmail = userSession.email;
         }
         this.displayGroupList();
     },
@@ -101,7 +103,7 @@ export default {
             this.$refs.groupForm.openModalForAdd(this.groups);
         },
         openMemberListModal(group){
-            this.$refs.memberList.openModalForMembers(group);
+            this.$refs.memberList.openModalForMembers(group,this.userEmail);
         },
         async deleteGroup(group){
           await SweetAlert.deleteSwal({

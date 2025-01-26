@@ -114,6 +114,14 @@ export default {
     this.initializeColorPicker();
   },
   methods: {
+    capitalizeWords(str) {
+      return str
+        .split(' ') 
+        .map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() 
+        )
+        .join(' '); 
+    },
     isLightColor(hex) {
       hex = hex.replace("#", "");
       const bigint = parseInt(hex, 16);
@@ -214,8 +222,8 @@ export default {
     },
     async handleSubmit() {
       try {
-        const { categoryId, categoryName, color, accessibility } = this.formData;
-
+        let { categoryId, categoryName, color, accessibility } = this.formData;
+        categoryName = this.capitalizeWords(categoryName);
         const formData = {
           categoryName,
           color,

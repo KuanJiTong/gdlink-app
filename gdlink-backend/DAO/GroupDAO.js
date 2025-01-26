@@ -6,7 +6,7 @@ const GroupDAO = {
         const conn = await getConnection();
         try{
             const query = `SELECT g.group_id, g.group_name, g.creator, g.created_at, COUNT(m.member_email) AS number_of_members
-                            FROM `/groups/` g
+                            FROM groups g
                             LEFT JOIN group_members m ON g.group_id = m.group_id
                             WHERE g.creator = ?
                             GROUP BY g.group_id, g.group_name, g.creator, g.created_at;`;
@@ -29,7 +29,7 @@ const GroupDAO = {
     async createGroup(userId,group){
         const conn = await getConnection();
         try{
-            const query = 'INSERT INTO `groups`(group_name,creator) VALUES (?,?)';
+            const query = 'INSERT INTO groups(group_name,creator) VALUES (?,?)';
             const result = await conn.query(query,[group.groupName,userId]);
             if (result.affectedRows > 0) {
                 return { success: true, message: 'Group created successfully.' };
@@ -50,7 +50,7 @@ const GroupDAO = {
     async updateGroup(group){
         const conn = await getConnection();
         try{
-            const query = 'UPDATE `groups` SET group_name = ? WHERE group_id = ?';
+            const query = 'UPDATE groups SET group_name = ? WHERE group_id = ?';
             const result = await conn.query(query,[group.groupName,group.groupId]);
             if (result.affectedRows > 0) {
                 return { success: true, message: 'Group updated successfully.' };
@@ -71,7 +71,7 @@ const GroupDAO = {
     async deleteGroup(groupId){
         const conn = await getConnection();
         try{
-            const query = 'Delete FROM `groups` WHERE group_id = ?';
+            const query = 'Delete FROM groups WHERE group_id = ?';
             const result = await conn.query(query,[groupId]);
             if (result.affectedRows > 0) {
                 return { success: true, message: 'Group delete successfully.' };

@@ -175,6 +175,7 @@ export default {
       view: null,
       activeTab: null,
       userId: null,
+      userEmail: null,
       role: null,
       resourceId: null,
       resource: {
@@ -236,6 +237,7 @@ export default {
       this.activeTab = null;
       this.userId = null;
       this.role = null;
+      this.userEmail = null;
       this.resourceId = null;
       this.resource = {
         link: "",
@@ -265,6 +267,7 @@ export default {
         const userSession = JSON.parse(sessionData);
         this.userId = userSession.user_id;
         this.role = userSession.role;
+        this.userEmail = userSession.email;
       }
 
       await this.displayCategoryList();
@@ -315,6 +318,13 @@ export default {
         );
         if (invalidEmails.length > 0) {
           this.errors.receivers = 'All user emails must be valid.';
+        }
+        const matchingEmails = this.resource.receivers.filter(
+          (receiver) =>
+            receiver.email.trim().toLowerCase() === this.userEmail.trim().toLowerCase() 
+        );
+        if (matchingEmails.length > 0) {
+          this.errors.receivers = 'You cannot share with yourself.';
         }
       }
 

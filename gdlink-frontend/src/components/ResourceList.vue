@@ -66,7 +66,7 @@ export default {
     },
     resourceType: {
       type: String,
-      required: true
+      required: false
     }
   },
   methods:{
