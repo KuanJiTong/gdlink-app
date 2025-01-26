@@ -54,10 +54,10 @@ export default {
       };
     },
     components: {
-      FilterField,
-      SearchBar,
-      DefaultLayout,
-      SharedWithMeResources
+        FilterField,
+        SearchBar,
+        DefaultLayout,
+        SharedWithMeResources
     },
     async created() {
         const sessionData = sessionStorage.getItem('utmwebfc_session');

@@ -116,53 +116,53 @@ export default {
 </script>
 
 <style scoped>
-    .btn-add{
-        background-color: white;
-        border: none;
-        color: green;
-        font-weight: bold;
-    }
+.btn-add{
+    background-color: white;
+    border: none;
+    color: green;
+    font-weight: bold;
+}
 
-    .btn-add:hover{
-        color: rgb(2, 181, 2);
-    }
+.btn-add:hover{
+    color: rgb(2, 181, 2);
+}
 
-    td div span{
-        cursor: pointer;
-        font-size: 20px;
-        padding: 5px;
-        height: 30px;
-        width: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 25px;
-    }
+td div span{
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
 
-    td div span i{
-        transform: translateY(-0.5px);
-    }
+td div span i{
+    transform: translateY(-0.5px);
+}
 
-    td div span:hover{
-        background-color: rgb(160, 206, 247);
-    }
+td div span:hover{
+    background-color: rgb(160, 206, 247);
+}
 
-    td div span:active{
-        background-color: rgb(160, 206, 247);
-        transform:scale(0.9);
-    }
+td div span:active{
+    background-color: rgb(160, 206, 247);
+    transform:scale(0.9);
+}
 
-    .bi-card-list{
-        color: darkblue;
-    }
+.bi-card-list{
+    color: darkblue;
+}
 
-    .bi-pencil-square{
-        color: darkgoldenrod;
-    }
+.bi-pencil-square{
+    color: darkgoldenrod;
+}
 
-    .bi-trash3{
-        color: rgb(194, 0, 0);
-    }
+.bi-trash3{
+    color: rgb(194, 0, 0);
+}
 </style>
 
 <style scoped>

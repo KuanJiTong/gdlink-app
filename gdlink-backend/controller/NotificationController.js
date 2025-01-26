@@ -6,7 +6,6 @@ const NotificationController = {
         try {
             const userId = req.params.userId;
             const result = await NotificationService.getUserNotifications(userId);
-            console.log(result);
             return res.json({ notifications: result});
         } catch (error) {
             console.error('Error in fetching user notifications:', error.message);
@@ -20,7 +19,6 @@ const NotificationController = {
     
     async markAsRead(req, res) {
         try {
-            console.log(req.params)
             const userId = req.params.userId;
             const notificationId = req.params.notificationId;
             const result = await NotificationService.markAsRead(notificationId, userId);

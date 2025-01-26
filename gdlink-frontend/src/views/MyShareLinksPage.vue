@@ -74,15 +74,12 @@ export default {
     methods:{
         async displayMyShareLinksResources() {
             this.myResources = await ResourcesSharingService.getMyShareLinksResources(this.userId);
-            console.log(this.myResources);
         },
         async displayFilteredResources() {
             this.myResources = await ResourcesSharingService.getFilteredMyShareLinksResources(this.userId,this.selectedCategories,this.selectedSemesters);
-            console.log(this.myResources);
         },
         async displaySearchedResources() {
             this.myResources = await ResourcesSharingService.getSearchedMyShareLinksResources(this.userId,this.key);
-            console.log(this.myResources);
         },
         updateCategory(categories) {
             this.selectedCategories = categories;

@@ -28,7 +28,6 @@ const CategoryDAO = {
     async createCategory(categoryName, color, accessibility) {
         const conn = await getConnection();
         try {
-            console.log(categoryName, color, accessibility);
             const query = `
                 INSERT INTO category (category_name, color, accessibility)
                 VALUES (?, ?, ?);
@@ -93,7 +92,6 @@ const CategoryDAO = {
 
             if(rows[0].accessibility){
                 rows[0].accessibility = rows[0].accessibility.split(',');
-                console.log(rows);
             }else{
                 rows[0].accessibility = [];
             }

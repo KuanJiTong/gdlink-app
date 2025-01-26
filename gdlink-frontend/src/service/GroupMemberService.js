@@ -6,7 +6,6 @@ const GroupMemberService = {
     async getMemberList(groupId){
         try {
             const response = await axios.get(`${API_BASE_URL}/${groupId}`);
-            console.log(response);
             return response.data;
         } catch (error) {
             console.error('Error retrieving members:', error);
@@ -18,7 +17,6 @@ const GroupMemberService = {
             const response = await axios.post(`${API_BASE_URL}/${groupId}/add`,{
                 memberEmail: memberEmail
             });
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error('Error adding member:', error);
@@ -27,7 +25,6 @@ const GroupMemberService = {
     async removeMember(groupMemberId){
         try {
             const response = await axios.delete(`${API_BASE_URL}/${groupMemberId}/delete`);
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error('Error removing member:', error);

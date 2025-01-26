@@ -19,7 +19,6 @@ const CategoryController = {
             
             const { categoryName, color, accessibility} = req.body; 
             const result = await CategoryService.createCategory(categoryName, color, accessibility);
-            console.log(categoryName, color, accessibility);
             if (result.error) {
                 return res.status(400).json(result);
             }

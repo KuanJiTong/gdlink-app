@@ -11,10 +11,10 @@
           </svg>
           <h2><strong>Category Management</strong></h2>
         </div>
-        <!-- Add category button -->
+
         <button class="btn btn-primary" @click="addCategory" style="width:auto; margin:15px">Add Category</button>
         <p class="float-end" style="margin:15px"><strong>Number of categories: {{ categories.length }} </strong></p>
-        <!-- Category list -->
+        
         <CategoryList
           :categories="categories"
           @viewDetails="viewDetails"
@@ -56,14 +56,12 @@ export default {
     async displayCategoryList() {
       try {
         this.categories = await CategoryService.getCategoryList();
-        console.log('Service:', this.categories);
       } catch (error) {
         console.error('Error fetching categories:', error);
         this.categories = []; 
       }
     },
     viewDetails(id) {
-      console.log("Category ID:", id);
       this.$router.push({ name: 'Category Edit Form', params: { categoryId: id } });
     },
   },
@@ -77,6 +75,6 @@ export default {
 }
 
 .min-1000{
-    min-height:1000px;
+  min-height:1000px;
 }
 </style>

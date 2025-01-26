@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     formatDate(date) {
-      console.log("Date received:", date);
       if (!date) return "No Date Available"; 
       const formattedDate = dayjs(date).format("DD MMM YYYY || hh:mm A");
       return formattedDate;
@@ -58,7 +57,7 @@ export default {
 };
 </script>
   
-  <style>
+<style scoped>
 .notification-box {
   align-items: center;
   padding: 5px;

@@ -170,7 +170,6 @@ export default {
     async loadCategoryList() {
       try {
         this.categories = await CategoryService.getCategoryList();
-        console.log('Service:', this.categories);
       } catch (error) {
         console.error('Error fetching categories:', error);
         this.categories = []; 
@@ -279,25 +278,25 @@ export default {
 }
 
 #color-indicator {
-    font-size: 6rem; /* Adjust the size as needed (e.g., 3rem, 5rem, etc.) */
-    display: inline-block;
-    margin-bottom: 1rem; /* Optional: Adds spacing below the icon */
+  font-size: 6rem; 
+  display: inline-block;
+  margin-bottom: 1rem; 
 }
 
 .icon-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .icon-box {
-    background-color: white; /* White background for the container */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
-    border-radius: 0.5rem;
-    padding: 1.5rem; /* Padding inside the container */
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+  background-color: white; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
+  border-radius: 0.5rem;
+  padding: 1.5rem; 
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }   
 
 </style>

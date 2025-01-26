@@ -24,8 +24,8 @@ const FavouriteController = {
         } catch (error) {
             console.error('Controller Error:', error.message); 
             res.status(500).json({
-              message: 'An error occurred while removing favourite',
-              error: error.message, 
+                message: 'An error occurred while removing favourite',
+                error: error.message, 
             });
         }
     },

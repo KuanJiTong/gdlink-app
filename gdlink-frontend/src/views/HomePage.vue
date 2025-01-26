@@ -23,62 +23,62 @@
   </DefaultLayout>
 </template>
   
-  <script>
-  import HomeService from '../service/HomeService';
-  import DefaultLayout from '../components/DefaultLayout.vue'; 
-  import ResourcesChart from '../components/ResourcesChart.vue';
-  import RecentAccessResources from '../components/ResourceList.vue'
-  
-  export default {
-    data(){
-      return {
-        userId: null,
-        userSession: null,
-        recentAccessResources: [],
-        myShareLinksResources: [],
-        sharedWithMeResources: [],
-        currentSession: '2024/2025',
-        currentSemester: '1'
+<script>
+import HomeService from '../service/HomeService';
+import DefaultLayout from '../components/DefaultLayout.vue'; 
+import ResourcesChart from '../components/ResourcesChart.vue';
+import RecentAccessResources from '../components/ResourceList.vue'
+
+export default {
+  data(){
+    return {
+      userId: null,
+      userSession: null,
+      recentAccessResources: [],
+      myShareLinksResources: [],
+      sharedWithMeResources: [],
+      currentSession: '2024/2025',
+      currentSemester: '1'
+    }
+  },
+  components: {
+    DefaultLayout,
+    ResourcesChart,
+    RecentAccessResources
+  },
+  created() {
+    const sessionData = sessionStorage.getItem('utmwebfc_session');
+      if (sessionData) {
+          this.userSession = JSON.parse(sessionData);
+          this.userId = this.userSession.user_id;
       }
+      this.displayChartData();
+      this.displayRecentAccess();
+  },
+  methods: {
+    async displayChartData(){
+      const data = await HomeService.getChartData(this.userId);
+      this.myShareLinksResources = data.myShareLinks;
+      this.sharedWithMeResources = data.sharedWithMe;
     },
-    components: {
-      DefaultLayout,
-      ResourcesChart,
-      RecentAccessResources
+    async displayRecentAccess(){
+      this.recentAccessResources = await HomeService.getRecentAccessResource(this.userId);
     },
-    created() {
-      const sessionData = sessionStorage.getItem('utmwebfc_session');
-        if (sessionData) {
-            this.userSession = JSON.parse(sessionData);
-            this.userId = this.userSession.user_id;
-        }
-        this.displayChartData();
-        this.displayRecentAccess();
-    },
-    methods: {
-      async displayChartData(){
-        const data = await HomeService.getChartData(this.userId);
-        this.myShareLinksResources = data.myShareLinks;
-        this.sharedWithMeResources = data.sharedWithMe;
-      },
-      async displayRecentAccess(){
-        this.recentAccessResources = await HomeService.getRecentAccessResource(this.userId);
-      },
-      async viewDetails(resourceId,resourceType){
-        if(resourceType === "share"){
-          this.$router.push({ name: 'My ShareLinks Resource Details', params: { resourceId: resourceId } });
-        }else{
-          this.$router.push({ name: 'Shared With Me Resource Details', params: { resourceId: resourceId } });
-        }
+    async viewDetails(resourceId,resourceType){
+      if(resourceType === "share"){
+        this.$router.push({ name: 'My ShareLinks Resource Details', params: { resourceId: resourceId } });
+      }else{
+        this.$router.push({ name: 'Shared With Me Resource Details', params: { resourceId: resourceId } });
       }
     }
-  };
-  </script>
-  
-  <style scoped>
-
-  .recent{
-    min-height: 500px;
   }
-  </style>
+};
+</script>
+
+<style scoped>
+
+.recent{
+  min-height: 500px;
+}
+</style>
   

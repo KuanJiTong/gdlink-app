@@ -63,7 +63,6 @@
           </tbody>
         </table>
 
-        <!-- Pagination controls -->
         <nav aria-label="Page navigation ">
           <ul class="pagination justify-content-end">
             <li class="page-item" :class="{ disabled: currentPage === 1 }">
@@ -196,7 +195,6 @@ export default {
     },
 
     formatDate(date) {
-      console.log("Date received:", date);
       if (!date) return "No Date Available"; 
       const formattedDate = dayjs(date).format("DD-MMM-YYYY  hh:mm A");
       return formattedDate;

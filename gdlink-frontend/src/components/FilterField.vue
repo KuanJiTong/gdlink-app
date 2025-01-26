@@ -1,223 +1,220 @@
 <template>
-    <div class="d-flex align-items-center gap-5">
-      <div id="btn-category">
-        <div style="position:relative;">
-          <div class="select-btn" @click="toggleDropdown('category')">
-            <span class="btn-text">Category</span>
-            <i class="bi bi-funnel-fill bi-solid"></i>
-          </div>
+  <div class="d-flex align-items-center gap-5">
+    <div id="btn-category">
+      <div style="position:relative;">
+        <div class="select-btn" @click="toggleDropdown('category')">
+          <span class="btn-text">Category</span>
+          <i class="bi bi-funnel-fill bi-solid"></i>
         </div>
-        <ul class="list-items" v-show="dropdowns.category">
-          <li class="items" v-for="(category,index) in categories" :key="category" :id="'item-category-' + index" :value="category.categoryName"  @click="selectCheck(selectedCategory,'category',category.categoryName,index)">
-            <span class="checkbox">
-              <i class="bi bi-check check-icon"></i>
-            </span>
-            <span class="item-text"> {{ category.categoryName }} </span>
-          </li>
-        </ul>
       </div>
-
-      <div id="btn-semester">
-        <div style="position:relative;">
-          <div class="select-btn" @click="toggleDropdown('semester')">
-            <span class="btn-text">Semester</span>
-            <i class="bi bi-funnel-fill bi-solid"></i>
-          </div>
-        </div>
-        <ul class="list-items" v-show="dropdowns.semester">
-          <li class="items" v-for="(semester,index) in semesters" :key="semester" :id="'item-semester-' + index" :value="semester"  @click="selectCheck(selectedSemester,'semester',semester,index)">
-            <span class="checkbox">
-              <i class="bi bi-check check-icon"></i>
-            </span>
-            <span class="item-text"> {{ semester }} </span>
-          </li>
-        </ul>
-      </div>
+      <ul class="list-items" v-show="dropdowns.category">
+        <li class="items" v-for="(category,index) in categories" :key="category" :id="'item-category-' + index" :value="category.categoryName"  @click="selectCheck(selectedCategory,'category',category.categoryName,index)">
+          <span class="checkbox">
+            <i class="bi bi-check check-icon"></i>
+          </span>
+          <span class="item-text"> {{ category.categoryName }} </span>
+        </li>
+      </ul>
     </div>
-  </template>
+
+    <div id="btn-semester">
+      <div style="position:relative;">
+        <div class="select-btn" @click="toggleDropdown('semester')">
+          <span class="btn-text">Semester</span>
+          <i class="bi bi-funnel-fill bi-solid"></i>
+        </div>
+      </div>
+      <ul class="list-items" v-show="dropdowns.semester">
+        <li class="items" v-for="(semester,index) in semesters" :key="semester" :id="'item-semester-' + index" :value="semester"  @click="selectCheck(selectedSemester,'semester',semester,index)">
+          <span class="checkbox">
+            <i class="bi bi-check check-icon"></i>
+          </span>
+          <span class="item-text"> {{ semester }} </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
   
-  <script>
+<script>
 import CategoryService from '@/service/CategoryService';
 
-  export default {
-    data() {
-      return {
-        selectedCategory: [],
-        selectedSemester: [],
-        categories: [], 
-        semesters: ["2022/2023-1", "2022/2023-2", "2023/2024-1", "2023/2024-2","2024/2025-1"], 
-        dropdowns: {
-          category: false,
-          semester: false,
-        },  
-      };
+export default {
+  data() {
+    return {
+      selectedCategory: [],
+      selectedSemester: [],
+      categories: [], 
+      semesters: ["2022/2023-1", "2022/2023-2", "2023/2024-1", "2023/2024-2","2024/2025-1"], 
+      dropdowns: {
+        category: false,
+        semester: false,
+      },  
+    };
+  },
+  props:{
+    view: {
+      type: String,
+      default: null
     },
-    props:{
-      view: {
-        type: String,
-        default: null
-      },
-      userRole: {
-        type: String,
-        default: null
+    userRole: {
+      type: String,
+      default: null
+    }
+  },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside);
+    this.loadCategories();
+  },
+
+  beforeUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
+  },
+
+  methods:{
+    async loadCategories(){
+      this.categories = await CategoryService.getCategoryList();
+      if(this.view === 'share'){
+        this.categories = this.filterCategory(this.userRole);
       }
     },
-    mounted() {
-      document.addEventListener('click', this.handleClickOutside);
-      this.loadCategories();
-    },
-
-    beforeUnmount() {
-      document.removeEventListener('click', this.handleClickOutside);
-    },
-
-    methods:{
-      async loadCategories(){
-        this.categories = await CategoryService.getCategoryList();
-        console.log(this.categories);
-        console.log(this.userRole);
-        if(this.view === 'share'){
-          this.categories = this.filterCategory(this.userRole);
-        }
-      },
-      filterCategory(role){
-        if(role === 'Academic Office'){
-          return this.categories.filter(category => 
-            category.accessibility.includes('staff')
-          );
-        }else if(role === 'Pensyarah'){
-          return this.categories.filter(category => 
-            category.accessibility.includes('lecturer')
-          );
-        }else{
-          return this.categories.filter(category => 
-            category.accessibility.includes('student')
-          );
-        }
-      },
-      toggleDropdown(type) {
-        this.dropdowns[type] = !this.dropdowns[type];
-      },
-
-      handleClickOutside(event) {
-        if (
-          !event.target.closest('#btn-category') &&
-          !event.target.closest('#btn-semester')
-        ) {
-          // Close all dropdowns if clicked outside
-          this.dropdowns.category = false;
-          this.dropdowns.semester = false;
-        }
-      },
-
-      selectCheck(selectedItem,word,item,index){
-        const check = document.querySelector(`#item-${word}-${index}`);
-        if (check.classList.contains("checked")) {
-          check.classList.remove("checked");
-          const selectedIndex = selectedItem.indexOf(item);
-          selectedItem.splice(selectedIndex,1);
-        } else {
-          check.classList.add("checked");
-          selectedItem.push(item);
-        }
-        const filterWord = `filter${word}`;
-        this.$emit(filterWord, selectedItem);
+    filterCategory(role){
+      if(role === 'Academic Office'){
+        return this.categories.filter(category => 
+          category.accessibility.includes('staff')
+        );
+      }else if(role === 'Pensyarah'){
+        return this.categories.filter(category => 
+          category.accessibility.includes('lecturer')
+        );
+      }else{
+        return this.categories.filter(category => 
+          category.accessibility.includes('student')
+        );
       }
     },
-  };
-  </script>
-  
-  <style scoped>
-  .form-select {
-    height: 40px;
-    max-width: 150px;
-    font-weight: bold;
-    text-transform: capitalize;
-    border-width: 2px;
-  }
+    toggleDropdown(type) {
+      this.dropdowns[type] = !this.dropdowns[type];
+    },
 
-  .select-btn{
-    display: flex;
-    height: 40px;
-    align-items:  center;
-    padding: 0px 40px 3px 10px;
-    border: 2px solid #D3D3D3;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #fff;
-  }
+    handleClickOutside(event) {
+      if (
+        !event.target.closest('#btn-category') &&
+        !event.target.closest('#btn-semester')
+      ) {
+        // Close all dropdowns if clicked outside
+        this.dropdowns.category = false;
+        this.dropdowns.semester = false;
+      }
+    },
 
-  .bi-solid{
-    position: absolute;
-    right: 10px;
-    bottom: 8px;
-  }
+    selectCheck(selectedItem,word,item,index){
+      const check = document.querySelector(`#item-${word}-${index}`);
+      if (check.classList.contains("checked")) {
+        check.classList.remove("checked");
+        const selectedIndex = selectedItem.indexOf(item);
+        selectedItem.splice(selectedIndex,1);
+      } else {
+        check.classList.add("checked");
+        selectedItem.push(item);
+      }
+      const filterWord = `filter${word}`;
+      this.$emit(filterWord, selectedItem);
+    }
+  },
+};
+</script>
 
-  .list-items{
-    position: absolute;
-    z-index: 999;
-    margin-top: -2px;
-    border-radius: 8px;
-    padding: 14px 0px;
-    background-color: #fff;
-    border: 2px solid #D3D3D3;
-    display: block;
-  }
+<style scoped>
+.form-select {
+  height: 40px;
+  max-width: 150px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-width: 2px;
+}
 
-  .list-items .items{
-    display: flex;
-    align-items: center;
-    list-style: none;
-    height: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-    padding: 0 15px;
-    border-radius: 8px;
-  }
+.select-btn{
+  display: flex;
+  height: 40px;
+  align-items:  center;
+  padding: 0px 40px 3px 10px;
+  border: 2px solid #D3D3D3;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #fff;
+}
 
-  .list-items .items:hover{
-    display: flex;
-    align-items: center;
-    list-style: none;
-    height: 30px;
-    cursor: pointer;
-    background-color: #e7edfe;
-  }
+.bi-solid{
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+}
 
-  .items .checkbox{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 0;
-    height: 16px;
-    width: 16px;
-    border-radius: 4px;
-    margin-right: 12px;
-    border: 1.5px solid #c0c0c0;
-    transition: all 0.3s ease-in-out;
-  }
+.list-items{
+  position: absolute;
+  z-index: 999;
+  margin-top: -2px;
+  border-radius: 8px;
+  padding: 14px 0px;
+  background-color: #fff;
+  border: 2px solid #D3D3D3;
+  display: block;
+}
 
-  .items.checked .checkbox{
-    background-color: #4070f4;
-    border-color: #4070f4;
-  }
+.list-items .items{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0 15px;
+  border-radius: 8px;
+}
 
-  .bi::before, 
-  [class*=" bi-"]::before, 
-  [class^=bi-]::before {
-    line-height: 0 !important; 
-  }
+.list-items .items:hover{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 30px;
+  cursor: pointer;
+  background-color: #e7edfe;
+}
+
+.items .checkbox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 4px;
+  margin-right: 12px;
+  border: 1.5px solid #c0c0c0;
+  transition: all 0.3s ease-in-out;
+}
+
+.items.checked .checkbox{
+  background-color: #4070f4;
+  border-color: #4070f4;
+}
+
+.bi::before, 
+[class*=" bi-"]::before, 
+[class^=bi-]::before {
+  line-height: 0 !important; 
+}
 
 
-  .checkbox .check-icon{
-    color: #fff;
-    font-size: 20px;
-    transform: scale(0);
-    transition: all 0.3s ease-in-out;
-  }
+.checkbox .check-icon{
+  color: #fff;
+  font-size: 20px;
+  transform: scale(0);
+  transition: all 0.3s ease-in-out;
+}
 
-  .items.checked .check-icon{
-    transform: scale(1);
-  }
-  </style>
-  
+.items.checked .check-icon{
+  transform: scale(1);
+}
+</style>

@@ -1,70 +1,70 @@
 <template>
     <div>
-      <div 
-        class="modal fade" 
-        id="memberListModal" 
-        data-bs-backdrop="static" 
-        data-bs-keyboard="false" 
-        tabindex="-1" 
-        aria-labelledby="memberListLabel" 
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title w-100 text-center" id="memberListLabel">
-                {{ group.groupName }}
-              </h2>
-              <button 
-                type="button" 
-                class="btn-close position-absolute" 
-                style="right: 20px;" 
-                data-bs-dismiss="modal" 
-                aria-label="Close"
-              ></button>
+        <div 
+            class="modal fade" 
+            id="memberListModal" 
+            data-bs-backdrop="static" 
+            data-bs-keyboard="false" 
+            tabindex="-1" 
+            aria-labelledby="memberListLabel" 
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title w-100 text-center" id="memberListLabel">
+                            {{ group.groupName }}
+                        </h2>
+                        <button 
+                            type="button" 
+                            class="btn-close position-absolute" 
+                            style="right: 20px;" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Member Name</th>
+                                    <th scope="col">Member Email</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(member, index) in groupMembers" :key="member.groupMemberId">
+                                    <td style="width:5%" scope="row">{{index+1}}</td>
+                                    <td :style="{ width: '50%', color: member.name ? 'inherit' : 'red' }">
+                                        {{ member.name || 'Unknown' }}
+                                    </td>                           
+                                    <td style="width:35%">{{ member.memberEmail }}</td>
+                                    <td style="width:10%">
+                                        <div class="d-flex flex-row gap-3">
+                                            <span @click="removeMember(member.groupMemberId)">
+                                                <i class="bi bi-trash3"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <small v-if="errors.memberEmail" class="text-danger">{{ errors.memberEmail }}</small>
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            placeholder="Enter User Email"
+                            id="memberEmail" 
+                            v-model="memberEmail" 
+                        />
+                        <button @click="submit()" class="btn btn-outline-primary">Add Member</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body p-4">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Member Name</th>
-                            <th scope="col">Member Email</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(member, index) in groupMembers" :key="member.groupMemberId">
-                            <td style="width:5%" scope="row">{{index+1}}</td>
-                            <td :style="{ width: '50%', color: member.name ? 'inherit' : 'red' }">
-                                {{ member.name || 'Unknown' }}
-                            </td>                           
-                            <td style="width:35%">{{ member.memberEmail }}</td>
-                            <td style="width:10%">
-                                <div class="d-flex flex-row gap-3">
-                                    <span @click="removeMember(member.groupMemberId)">
-                                        <i class="bi bi-trash3"></i>
-                                    </span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <small v-if="errors.memberEmail" class="text-danger">{{ errors.memberEmail }}</small>
-                <input 
-                    type="text" 
-                    class="form-control"
-                    placeholder="Enter User Email"
-                    id="memberEmail" 
-                    v-model="memberEmail" 
-                />
-                <button @click="submit()" class="btn btn-outline-primary">Add Member</button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 </template>
 
@@ -235,7 +235,4 @@ td div span:active{
 .bi-trash3{
     color: rgb(194, 0, 0);
 }
-
-
-
 </style>

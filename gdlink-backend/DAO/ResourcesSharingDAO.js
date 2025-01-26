@@ -101,7 +101,6 @@ const ResourceSharingDAO = {
             query += ` WHERE ${userIdType} = ? GROUP BY category_name;`;
             let rows = await conn.query(query,[userId]);
             rows = rows.map(snakeToCamel);
-            console.log(rows);
             const updatedRows = rows.map(row => {
                 row.categoryCount = Number(row.categoryCount);
                 return row;
@@ -142,8 +141,6 @@ const ResourceSharingDAO = {
                     }
                 }
             }
-
-            console.log(receivers);
     
             const sharingQuery = `INSERT INTO sharing (receiver_email, resource_id) VALUES (?,?);`;
             for (let receiver of receivers) {
@@ -213,8 +210,6 @@ const ResourceSharingDAO = {
                     }
                 }
             }
-
-            console.log(usersToAdd);
     
             // Insert users to be added
             const sharingQuery = `INSERT INTO sharing (receiver_email, resource_id) VALUES (?,?);`;
@@ -501,7 +496,7 @@ const ResourceSharingDAO = {
                             group_sharing ON resources.resource_id = group_sharing.resource_id
                             AND resources.share_to = 'specific groups'  
                         LEFT JOIN
-                            groups ON group_sharing.group_id = groups.group_id  
+                            `/groups/` ON group_sharing.group_id = groups.group_id  
                         LEFT JOIN
                             sharing ON resources.resource_id = sharing.resource_id
                             AND resources.share_to = 'specific users'  
@@ -512,8 +507,6 @@ const ResourceSharingDAO = {
             }
     
             const rows = await conn.query(query, queryParams);
-
-            console.log(rows);
             
             return rows.map(snakeToCamel);
         } catch (error) {
@@ -663,7 +656,6 @@ const ResourceSharingDAO = {
 
     async initResources(userEmail, userRole) {
         const conn = await getConnection();
-        console.log("role: " + userRole + ",  email: " + userEmail);
         try {
             const shareToConditions = ['all']; 
         

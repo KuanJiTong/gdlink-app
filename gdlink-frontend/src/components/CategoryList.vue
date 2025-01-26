@@ -2,13 +2,13 @@
   <div class="container">
     <div class="grid-layout">
       <div v-for="(category, index) in categories" :key="index" style="width: 180px;">
-          <CategoryBox 
-            :categoryColor="category.color"
-            :categoryName="category.categoryName"
-            :categoryAccessibility="category.accessibility"
-            @click="viewDetails(category.categoryId)"
-          />
-        </div> 
+        <CategoryBox 
+          :categoryColor="category.color"
+          :categoryName="category.categoryName"
+          :categoryAccessibility="category.accessibility"
+          @click="viewDetails(category.categoryId)"
+        />
+      </div> 
     </div>
   </div>
 </template>
@@ -86,6 +86,4 @@ export default {
         grid-template-columns: repeat(8, var(--box-width));
     }
 }
-
-
 </style>

@@ -388,7 +388,6 @@ const ResourceSharingService = {
     },
 
     async initUserResources(userEmail, userRole) {
-        console.log('email' + userEmail);
         try {
             return await ResourcesSharingDAO.initResources(userEmail, userRole);
         } catch (error) {

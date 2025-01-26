@@ -47,7 +47,7 @@
                     <CustomButton v-if="view === 'share'" :name="'edit'" @click ="editResource"/>
                     <CustomButton v-if="view === 'share'" :name="'del'" @click ="deleteResource"/>
                 </div>
-              </div>
+            </div>
         </template>
     </DefaultLayout>
 </template>
@@ -90,7 +90,6 @@ export default {
             this.role = userSession.role;
         }
         await this.displayResourceDetails();
-        console.log(this.resource);
     },
     methods:{
         transformedShareTo(shareTo) {
@@ -155,12 +154,12 @@ export default {
             if(this.role === 'Admin'){
                 nav = '/admin/AllResources';
             }
-          await SweetAlert.deleteSwal({
-            confirmText: 'This action will permanently delete the resource.',
-            successText: 'The resource has been deleted.',
-            deleteAction: () => ResourcesSharingService.deleteResource(this.userId, this.resourceId),
-            navigation: () => this.$router.push(nav),
-          });
+            await SweetAlert.deleteSwal({
+                confirmText: 'This action will permanently delete the resource.',
+                successText: 'The resource has been deleted.',
+                deleteAction: () => ResourcesSharingService.deleteResource(this.userId, this.resourceId),
+                navigation: () => this.$router.push(nav),
+            });
         },
     }
 };
@@ -168,11 +167,11 @@ export default {
 </script>
 
 <style scoped>
-  .bg-white{
+.bg-white{
     background-color: white;
-  }
+}
 
-  .resource-container {
+.resource-container {
     display: grid;
     grid-template-columns: 1fr 2fr; 
     gap: 30px; 
@@ -208,5 +207,4 @@ i:hover{
 .bi-info-circle:active{
     font-size: 10px; 
 }
-
 </style>

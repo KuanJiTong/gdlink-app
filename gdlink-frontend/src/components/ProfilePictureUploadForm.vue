@@ -98,7 +98,6 @@ export default {
       return new File([byteArray], fileName, { type: mimeType });
     },
 
-
     handleFileSelect(event) {
       if (event.target.files.length > 1) {
         alert('Please select only one image.');
@@ -123,12 +122,6 @@ export default {
             scalable: false,
 
             aspectRatio: 1,
-            // ready() {
-            //     document.querySelector('.cropper-container').style.width = '190px';
-            //     document.querySelector('.cropper-container').style.display = 'flex';
-            //     document.querySelector('.cropper-container').style.justifyContent = 'center';
-            //     document.querySelector('.cropper-container').style.alignItems = 'center';
-            // },
             crop: () => {
               const canvas =this.cropper.getCroppedCanvas();
               this.croppedImage = canvas.toDataURL("image/png");
@@ -152,7 +145,6 @@ export default {
         }
         this.file = droppedFile;
         this.previewImage = URL.createObjectURL(this.file);
-        console.log(this.previewImage);
       }
     },
     removePreview(){
@@ -218,38 +210,38 @@ export default {
 
 <style scoped>
 .file-drop-zone {
-    width: 300px;
-    height: 200px;
-    border: 2px dashed #000;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-color: #ffffff;
-    position: relative;
+  width: 300px;
+  height: 200px;
+  border: 2px dashed #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #ffffff;
+  position: relative;
 }
 
 .file-drop-zone .icon {
-    font-size: 40px;
-    margin-bottom: 10px;
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
 .file-drop-zone label {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .file-drop-zone label:hover {
-    background-color: #90EE90;
+  background-color: #90EE90;
 }
 
 .file-drop-zone p {
-    margin: 0;
-    font-size: 16px;
+  margin: 0;
+  font-size: 16px;
 }
 
 .preview-image{
@@ -262,7 +254,7 @@ export default {
 .preview-image img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* Ensures the image scales to fit without distortion */
+  object-fit: contain; 
 }
 
 .close{
@@ -275,15 +267,15 @@ export default {
 }
 
 .cropper-container {
-    direction: ltr;
-    font-size: 0;
-    line-height: 0;
-    position: relative;
-    touch-action: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    width: 190px!important;
+  direction: ltr;
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  width: 190px!important;
 }
 </style>

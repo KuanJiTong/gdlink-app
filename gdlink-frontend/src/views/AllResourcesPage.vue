@@ -61,108 +61,106 @@ import ResourcesSharingService from '../service/ResourcesSharingService';
 import DefaultLayout from '../components/DefaultLayout.vue';
 
 export default {
-data() {
-    return {
-        allResources: [],
-        selectedCategories: null,
-        selectedSemesters: null,
-        key: null,
-        currentPage: 1,
-        resourcesPerPage: 10
-    };
-},
-components: {
-    FilterField,
-    SearchBar,
-    DefaultLayout
-},
-created() {
-    const sessionData = sessionStorage.getItem('utmwebfc_session');
-    if (sessionData) {
-        const userSession = JSON.parse(sessionData);
-        this.userId = userSession.user_id;
+    data() {
+        return {
+            allResources: [],
+            selectedCategories: null,
+            selectedSemesters: null,
+            key: null,
+            currentPage: 1,
+            resourcesPerPage: 10
+        };
+    },
+    components: {
+        FilterField,
+        SearchBar,
+        DefaultLayout
+    },
+    created() {
+        const sessionData = sessionStorage.getItem('utmwebfc_session');
+        if (sessionData) {
+            const userSession = JSON.parse(sessionData);
+            this.userId = userSession.user_id;
+        }
+        this.displayAllResources();
+    },
+    computed: {
+        totalPages() {
+            return Math.ceil(this.allResources.length / this.resourcesPerPage);
+        },
+        paginatedResources() {
+            const start = (this.currentPage - 1) * this.resourcesPerPage;
+            const end = start + this.resourcesPerPage;
+            return this.sortedResources().slice(start, end);
+        },
+    },
+    methods: {
+        sortedResources() {
+            return this.allResources.slice().sort((a, b) => a.resourceId - b.resourceId);
+        },
+        async displayAllResources() {
+            this.allResources = await ResourcesSharingService.getAllResources();
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPages) {
+                this.currentPage++;
+            }
+        },
+        previousPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+            }
+        },
+        updateCategory(categories) {
+            this.selectedCategories = categories;
+            this.reloadPage();
+        },
+        updateSemester(semesters) {
+            this.selectedSemesters = semesters;
+            this.reloadPage();
+        },
+        reloadPage() {
+            this.currentPage = 1; // Reset to the first page
+            this.displayFilteredResources();
+        },
+        search(key) {
+            this.key = key;
+            if (key) {
+                this.displaySearchedResources();
+            } else {
+                this.displayAllResources();
+            }
+        },
+        viewDetails(id) {
+            this.$router.push({ name: 'Resource Management Resource Details', params: { resourceId: id } });
+        },
+        async displayFilteredResources() {
+            this.allResources = await ResourcesSharingService.getFilteredAllResources(this.selectedCategories,this.selectedSemesters);
+        },
+        async displaySearchedResources() {
+            this.allResources = await ResourcesSharingService.getSearchedAllResources(this.key);
+        },
     }
-    this.displayAllResources();
-},
-computed: {
-    totalPages() {
-        return Math.ceil(this.allResources.length / this.resourcesPerPage);
-    },
-    paginatedResources() {
-        const start = (this.currentPage - 1) * this.resourcesPerPage;
-        const end = start + this.resourcesPerPage;
-        return this.sortedResources().slice(start, end);
-    },
-},
-methods: {
-    sortedResources() {
-        console.log(this.allResources);
-        return this.allResources.slice().sort((a, b) => a.resourceId - b.resourceId);
-    },
-    async displayAllResources() {
-        this.allResources = await ResourcesSharingService.getAllResources();
-    },
-    nextPage() {
-        if (this.currentPage < this.totalPages) {
-            this.currentPage++;
-        }
-    },
-    previousPage() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
-        }
-    },
-    updateCategory(categories) {
-        this.selectedCategories = categories;
-        this.reloadPage();
-    },
-    updateSemester(semesters) {
-        this.selectedSemesters = semesters;
-        this.reloadPage();
-    },
-    reloadPage() {
-        this.currentPage = 1; // Reset to the first page
-        this.displayFilteredResources();
-    },
-    search(key) {
-        this.key = key;
-        if (key) {
-            this.displaySearchedResources();
-        } else {
-            this.displayAllResources();
-        }
-    },
-    viewDetails(id) {
-        console.log(id);
-        this.$router.push({ name: 'Resource Management Resource Details', params: { resourceId: id } });
-    },
-    async displayFilteredResources() {
-        this.allResources = await ResourcesSharingService.getFilteredAllResources(this.selectedCategories,this.selectedSemesters);
-    },
-    async displaySearchedResources() {
-        this.allResources = await ResourcesSharingService.getSearchedAllResources(this.key);
-    },
-}
 };
 </script>
 
 <style scoped>
 .pagination-controls {
-margin-bottom: -15px; /* Adjust to bring closer to the table */
-margin-top: 10px; /* Add slight space above for separation */
+    margin-bottom: -15px; 
+    margin-top: 10px; 
 }
 
 table.smaller-font {
-font-size: 0.8rem; /* Adjust the font size */
+    font-size: 0.8rem; 
 }
 
 table.smaller-font th,
 table.smaller-font td {
-padding: 0.5rem; /* Reduce padding to make rows more compact */
+    padding: 0.5rem; 
 }
 
 table.smaller-font tbody tr {
-height: 50px; /* Reduce row height */
+    height: 50px; 
 }
 
 .min-height{

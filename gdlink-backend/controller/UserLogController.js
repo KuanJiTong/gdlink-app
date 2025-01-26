@@ -22,7 +22,6 @@ const UserLogController = {
     async getAllUserLogs(req, res) {
         try {
             const result = await UserLogService.getAllUserLogs();
-            console.log(result);
             return res.json({ UserLog: result });
         } catch (error) {
             console.error('Error in fetching user log:', error.message);

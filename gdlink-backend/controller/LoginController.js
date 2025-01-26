@@ -7,7 +7,6 @@ const LoginController = {
 
         try {
             const result = await LoginService.checkUserCredentials(user_id, password);
-            console.log(result);
             return res.json(result);  
         } catch (error) {
             console.error('Error in dbCheck:', error.message);
