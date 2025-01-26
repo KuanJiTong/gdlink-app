@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2025 at 05:50 AM
+-- Generation Time: Jan 26, 2025 at 01:15 PM
 -- Server version: 11.5.2-MariaDB
 -- PHP Version: 8.0.30
 
@@ -60,6 +60,13 @@ CREATE TABLE `favourite_resources` (
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `favourite_resources`
+--
+
+INSERT INTO `favourite_resources` (`user_id`, `resource_id`, `created_at`) VALUES
+('A22EC0067', 104, '2025-01-26 12:03:30');
+
 -- --------------------------------------------------------
 
 --
@@ -80,7 +87,9 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`group_id`, `group_name`, `creator`, `created_at`) VALUES
 (476, 'ip-s06', 'A22EC0062', '2025-01-20 17:54:24'),
 (483, 'ip-s06', 'A22EC0067', '2025-01-21 09:22:39'),
-(484, 'ip-s07', 'A22EC0062', '2025-01-22 07:23:50');
+(484, 'ip-s07', 'A22EC0062', '2025-01-22 07:23:50'),
+(485, 'ip-s08', 'A22EC0062', '2025-01-23 07:25:37'),
+(486, 'ip-s10', 'A22EC0062', '2025-01-26 09:33:07');
 
 -- --------------------------------------------------------
 
@@ -101,7 +110,8 @@ CREATE TABLE `group_members` (
 --
 
 INSERT INTO `group_members` (`group_member_id`, `group_id`, `member_email`, `role`, `joined_at`) VALUES
-(41, 476, 'kwekcong@graduate.utm.my', 'member', '2025-01-23 04:45:38');
+(41, 476, 'kwekcong@graduate.utm.my', 'member', '2025-01-23 04:45:38'),
+(42, 476, 'leowhong@graduate.utm.my', 'member', '2025-01-24 19:33:46');
 
 -- --------------------------------------------------------
 
@@ -259,7 +269,60 @@ INSERT INTO `notifications` (`notification_id`, `resource_id`, `message`, `creat
 (329, 91, 'KUAN JI TONG shared the resource \"CC008\" with you.', '2025-01-23 04:49:23'),
 (330, 91, 'KUAN JI TONG edited the resource \"CC008\".', '2025-01-23 04:49:27'),
 (331, 91, 'KUAN JI TONG unshared the resource \"CC008\" with you.', '2025-01-23 04:49:27'),
-(332, 91, 'KUAN JI TONG shared the resource \"CC008\" with you.', '2025-01-23 04:49:27');
+(332, 91, 'KUAN JI TONG shared the resource \"CC008\" with you.', '2025-01-23 04:49:27'),
+(333, 84, 'KUAN JI TONG edited the resource \"CC001\".', '2025-01-23 05:57:35'),
+(334, 84, 'KUAN JI TONG unshared the resource \"CC001\" with you.', '2025-01-23 05:57:35'),
+(335, 84, 'KUAN JI TONG shared the resource \"CC001\" with you.', '2025-01-23 05:57:35'),
+(336, 84, 'KUAN JI TONG edited the resource \"CC001\".', '2025-01-23 05:57:40'),
+(337, 84, 'KUAN JI TONG unshared the resource \"CC001\" with you.', '2025-01-23 05:57:40'),
+(338, 84, 'KUAN JI TONG shared the resource \"CC001\" with you.', '2025-01-23 05:57:40'),
+(339, 85, 'KUAN JI TONG edited the resource \"CC002\".', '2025-01-23 05:57:51'),
+(340, 85, 'KUAN JI TONG unshared the resource \"CC002\" with you.', '2025-01-23 05:57:51'),
+(341, 85, 'KUAN JI TONG shared the resource \"CC002\" with you.', '2025-01-23 05:57:51'),
+(342, 85, 'KUAN JI TONG edited the resource \"CC002\".', '2025-01-23 05:57:57'),
+(343, 85, 'KUAN JI TONG unshared the resource \"CC002\" with you.', '2025-01-23 05:57:57'),
+(344, 85, 'KUAN JI TONG shared the resource \"CC002\" with you.', '2025-01-23 05:57:57'),
+(345, 77, 'Admin edited the resource \"SECJ2013-03\".', '2025-01-23 09:41:07'),
+(346, 77, 'Your resource \"SECJ2013-03\" has been edited by Admin.', '2025-01-23 09:41:07'),
+(347, NULL, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-24 19:40:19'),
+(348, NULL, 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-24 19:41:57'),
+(349, NULL, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-24 19:43:53'),
+(350, NULL, 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-24 19:44:30'),
+(351, NULL, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-24 19:46:45'),
+(352, NULL, 'KUAN JI TONG shared the resource \"Demo 2\" with you.', '2025-01-24 19:48:03'),
+(353, NULL, 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-24 19:48:55'),
+(354, NULL, 'KUAN JI TONG unshared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:48:55'),
+(355, NULL, 'KUAN JI TONG shared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:48:55'),
+(356, NULL, 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-24 19:49:26'),
+(357, NULL, 'KUAN JI TONG unshared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:49:26'),
+(358, NULL, 'KUAN JI TONG shared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:49:26'),
+(359, NULL, 'KUAN JI TONG deleted the resource \"Demo 2 edit\".', '2025-01-24 19:49:52'),
+(360, NULL, 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-24 19:52:11'),
+(361, NULL, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-24 19:53:28'),
+(362, NULL, 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-24 19:54:04'),
+(363, NULL, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-24 19:55:16'),
+(364, NULL, 'KUAN JI TONG shared the resource \"Demo 2\" with you.', '2025-01-24 19:56:07'),
+(365, NULL, 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-24 19:56:38'),
+(366, NULL, 'KUAN JI TONG unshared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:56:38'),
+(367, NULL, 'KUAN JI TONG shared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:56:38'),
+(368, NULL, 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-24 19:56:57'),
+(369, NULL, 'KUAN JI TONG unshared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:56:58'),
+(370, NULL, 'KUAN JI TONG shared the resource \"Demo 2 edit\" with you.', '2025-01-24 19:56:58'),
+(371, NULL, 'KUAN JI TONG deleted the resource \"Demo 2 edit\".', '2025-01-24 19:57:15'),
+(372, NULL, 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 05:27:35'),
+(373, NULL, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-25 05:34:01'),
+(374, NULL, 'KUAN JI TONG shared the resource \"Demo 2\" with you.', '2025-01-25 05:34:47'),
+(375, NULL, 'KUAN JI TONG deleted the resource \"Demo 2\".', '2025-01-25 05:35:48'),
+(376, NULL, 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 05:35:52'),
+(377, 104, 'KUAN JI TONG shared the resource \"Demo 1\" with you.', '2025-01-25 05:37:35'),
+(378, NULL, 'KUAN JI TONG shared the resource \"Demo 2\" with you.', '2025-01-25 05:38:25'),
+(379, NULL, 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 05:39:01'),
+(380, NULL, 'KUAN JI TONG unshared the resource \"Demo 2 edit\" with you.', '2025-01-25 05:39:01'),
+(381, NULL, 'KUAN JI TONG shared the resource \"Demo 2 edit\" with you.', '2025-01-25 05:39:01'),
+(382, NULL, 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 05:39:28'),
+(383, NULL, 'KUAN JI TONG unshared the resource \"Demo 2 edit\" with you.', '2025-01-25 05:39:28'),
+(384, NULL, 'KUAN JI TONG shared the resource \"Demo 2 edit\" with you.', '2025-01-25 05:39:28'),
+(385, NULL, 'KUAN JI TONG deleted the resource \"Demo 2 edit\".', '2025-01-25 05:39:50');
 
 -- --------------------------------------------------------
 
@@ -285,21 +348,22 @@ CREATE TABLE `resources` (
 --
 
 INSERT INTO `resources` (`resource_id`, `category_id`, `ref_name`, `sessem`, `description`, `link`, `sharer_id`, `shared_at`, `latest_access_time`, `share_to`) VALUES
-(77, 1, 'SECJ2013-03', '2024/2025-1', 'Course files submission for DSA Course Section 03', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 12:15:32', '2025-01-23 04:15:33', 'lecturers'),
+(77, 1, 'SECJ2013-03', '2024/2025-1', 'Course files submission for DSA Course Section 03', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 17:41:07', '2025-01-23 10:12:57', 'lecturers'),
 (78, 1, 'SECJ2013-09', '2024/2025-1', 'Course files submission for DSA Course Section 09', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 02:25:09', '2025-01-22 20:19:47', 'specific users'),
 (79, 1, 'SECR3104-03', '2024/2025-1', 'Course files submission for AD Course (R) Section 03', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 02:25:37', '2025-01-22 20:19:30', 'specific users'),
 (80, 1, 'SECJ3104-01', '2024/2025-1', 'Course files submission for AD Course (J) Section 01', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 02:26:34', '2025-01-23 04:15:19', 'specific users'),
 (81, 1, 'SECV3104-01', '2024/2025-1', 'Course files submission for AD Course (V) Section 01', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 04:18:08', '2025-01-22 20:18:30', 'specific users'),
 (82, 1, 'SECV3104-01', '2024/2025-1', 'Course files submission for AD Course (V) Section 01', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 04:18:48', '2025-01-22 20:18:48', 'specific users'),
 (83, 1, 'SECJ2154-07', '2024/2025-1', 'Course files submission for OOP Course Section 07', 'https://drive.google.com/drive/folders/', 'FC001', '2025-01-23 04:19:09', '2025-01-23 04:15:22', 'specific users'),
-(84, 8, 'CC001', '2024/2025-1', 'Coding Competition 1', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:32:16', '2025-01-23 04:32:16', 'all'),
-(85, 8, 'CC002', '2024/2025-1', 'Coding Competition 2', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:32:34', '2025-01-23 04:32:34', 'all'),
+(84, 8, 'CC001', '2024/2025-1', 'Coding Competition 1', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 13:57:40', '2025-01-23 10:00:53', 'all'),
+(85, 8, 'CC002', '2024/2025-1', 'Coding Competition 2', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 13:57:57', '2025-01-23 07:40:23', 'all'),
 (86, 8, 'CC003', '2024/2025-1', 'Coding Competition 3', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:47:15', '2025-01-23 04:47:15', 'all'),
 (87, 8, 'CC004', '2024/2025-1', 'Coding Competition 4', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:47:35', '2025-01-23 04:47:35', 'all'),
-(88, 8, 'CC005', '2024/2025-1', 'Coding Competition 5', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:48:08', '2025-01-23 04:48:08', 'all'),
+(88, 8, 'CC005', '2024/2025-1', 'Coding Competition 5', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:48:08', '2025-01-26 08:57:48', 'all'),
 (89, 8, 'CC006', '2024/2025-1', 'Coding Competition 6', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:48:38', '2025-01-23 04:48:38', 'all'),
-(90, 8, 'CC007', '2024/2025-1', 'Coding Competition 7', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:49:12', '2025-01-23 04:49:12', 'all'),
-(91, 8, 'CC008', '2024/2025-1', 'Coding Competition 8', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:49:27', '2025-01-23 04:49:27', 'all');
+(90, 8, 'CC007', '2024/2025-1', 'Coding Competition 7', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:49:12', '2025-01-23 05:56:36', 'all'),
+(91, 8, 'CC008', '2024/2025-1', 'Coding Competition 8', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:49:27', '2025-01-23 05:54:14', 'all'),
+(104, 8, 'Demo 1', '2024/2025-1', 'Demo 1 desc', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-25 13:37:35', '2025-01-26 09:32:52', 'specific users');
 
 -- --------------------------------------------------------
 
@@ -318,30 +382,41 @@ CREATE TABLE `sharing` (
 --
 
 INSERT INTO `sharing` (`receiver_email`, `resource_id`, `latest_access_time`) VALUES
+('academicoffice@fc.utm.my', 84, NULL),
+('academicoffice@fc.utm.my', 85, NULL),
 ('academicoffice@fc.utm.my', 86, NULL),
 ('academicoffice@fc.utm.my', 87, NULL),
 ('academicoffice@fc.utm.my', 88, NULL),
 ('academicoffice@fc.utm.my', 89, NULL),
 ('academicoffice@fc.utm.my', 90, NULL),
 ('academicoffice@fc.utm.my', 91, NULL),
+('kewheng@graduate.utm.my ', 84, NULL),
+('kewheng@graduate.utm.my ', 85, NULL),
 ('kewheng@graduate.utm.my ', 86, NULL),
 ('kewheng@graduate.utm.my ', 87, NULL),
 ('kewheng@graduate.utm.my ', 88, NULL),
 ('kewheng@graduate.utm.my ', 89, NULL),
 ('kewheng@graduate.utm.my ', 90, NULL),
 ('kewheng@graduate.utm.my ', 91, NULL),
+('kwekcong@graduate.utm.my ', 84, NULL),
+('kwekcong@graduate.utm.my ', 85, NULL),
 ('kwekcong@graduate.utm.my ', 86, NULL),
 ('kwekcong@graduate.utm.my ', 87, NULL),
 ('kwekcong@graduate.utm.my ', 88, NULL),
 ('kwekcong@graduate.utm.my ', 89, NULL),
 ('kwekcong@graduate.utm.my ', 90, NULL),
 ('kwekcong@graduate.utm.my ', 91, NULL),
+('leowhong@graduate.utm.my ', 84, NULL),
+('leowhong@graduate.utm.my ', 85, '2025-01-23 08:53:02'),
 ('leowhong@graduate.utm.my ', 86, NULL),
 ('leowhong@graduate.utm.my ', 87, NULL),
 ('leowhong@graduate.utm.my ', 88, NULL),
 ('leowhong@graduate.utm.my ', 89, NULL),
 ('leowhong@graduate.utm.my ', 90, NULL),
 ('leowhong@graduate.utm.my ', 91, NULL),
+('leowhong@graduate.utm.my', 104, '2025-01-26 12:03:35'),
+('msmd2@live.utm.my', 84, NULL),
+('msmd2@live.utm.my', 85, NULL),
 ('msmd2@live.utm.my', 86, NULL),
 ('msmd2@live.utm.my', 87, NULL),
 ('msmd2@live.utm.my', 88, NULL),
@@ -355,6 +430,8 @@ INSERT INTO `sharing` (`receiver_email`, `resource_id`, `latest_access_time`) VA
 ('tonianwar@utm.my', 81, NULL),
 ('tonianwar@utm.my', 82, NULL),
 ('tonianwar@utm.my', 83, NULL),
+('tonianwar@utm.my', 84, NULL),
+('tonianwar@utm.my', 85, NULL),
 ('tonianwar@utm.my', 86, NULL),
 ('tonianwar@utm.my', 87, NULL),
 ('tonianwar@utm.my', 88, NULL),
@@ -502,7 +579,79 @@ INSERT INTO `user_log` (`log_id`, `user_id`, `action`, `action_time`) VALUES
 (357, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC007\".', '2025-01-23 12:49:04'),
 (358, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC007\".', '2025-01-23 12:49:12'),
 (359, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC008\".', '2025-01-23 12:49:23'),
-(360, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC008\".', '2025-01-23 12:49:27');
+(360, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC008\".', '2025-01-23 12:49:27'),
+(361, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-23 13:53:43'),
+(362, 'A22ec0067', 'LEOW YAN HONG logged into the system', '2025-01-23 13:53:49'),
+(363, 'A22EC0067', 'LEOW YAN HONG logged out from the system', '2025-01-23 13:53:57'),
+(364, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-23 13:54:02'),
+(365, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC001\".', '2025-01-23 13:57:35'),
+(366, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC001\".', '2025-01-23 13:57:40'),
+(367, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC002\".', '2025-01-23 13:57:51'),
+(368, 'A22EC0062', 'KUAN JI TONG edited the resource \"CC002\".', '2025-01-23 13:57:57'),
+(369, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-23 13:58:00'),
+(370, 'A22ec0067', 'LEOW YAN HONG logged into the system', '2025-01-23 13:58:04'),
+(371, 'A22EC0067', 'LEOW YAN HONG logged out from the system', '2025-01-23 14:34:43'),
+(372, '12085', 'TONI ANWAR logged into the system', '2025-01-23 14:35:19'),
+(373, '12085', 'TONI ANWAR logged out from the system', '2025-01-23 14:35:24'),
+(374, 'Admin', 'Admin logged into the system', '2025-01-23 14:35:29'),
+(375, 'ADMIN', 'Admin logged out from the system', '2025-01-23 15:01:35'),
+(376, 'Admin', 'Admin logged into the system', '2025-01-23 15:01:42'),
+(377, 'ADMIN', 'Admin logged out from the system', '2025-01-23 15:04:40'),
+(378, 'A22ec0067', 'LEOW YAN HONG logged into the system', '2025-01-23 15:04:51'),
+(379, 'A22EC0067', 'LEOW YAN HONG logged out from the system', '2025-01-23 15:21:40'),
+(380, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-23 15:21:45'),
+(381, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-23 15:40:38'),
+(382, 'A22ec0067', 'LEOW YAN HONG logged into the system', '2025-01-23 15:40:52'),
+(383, 'A22EC0067', 'LEOW YAN HONG logged out from the system', '2025-01-23 17:29:24'),
+(384, 'Admin', 'Admin logged into the system', '2025-01-23 17:29:29'),
+(385, 'ADMIN', 'Admin logged out from the system', '2025-01-23 17:33:12'),
+(386, 'Admin', 'Admin logged into the system', '2025-01-23 17:33:16'),
+(387, 'ADMIN', 'Admin edited the resource \"SECJ2013-03\".', '2025-01-23 17:41:07'),
+(388, 'ADMIN', 'Admin logged out from the system', '2025-01-23 18:08:18'),
+(389, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-23 18:08:21'),
+(390, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-23 18:09:36'),
+(391, 'Admin', 'Admin logged into the system', '2025-01-23 18:09:40'),
+(392, 'ADMIN', 'Admin logged out from the system', '2025-01-23 18:11:56'),
+(393, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-23 18:12:01'),
+(394, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-23 18:12:16'),
+(395, 'Admin', 'Admin logged into the system', '2025-01-23 18:12:20'),
+(396, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-25 03:33:08'),
+(397, 'A22ec0067', 'LEOW YAN HONG logged into the system', '2025-01-25 03:33:24'),
+(398, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 03:40:19'),
+(399, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 03:41:57'),
+(400, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 03:43:53'),
+(401, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 03:44:30'),
+(402, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 03:46:45'),
+(403, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 2\".', '2025-01-25 03:48:03'),
+(404, 'A22EC0062', 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 03:48:55'),
+(405, 'A22EC0062', 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 03:49:26'),
+(406, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 2 edit\".', '2025-01-25 03:49:52'),
+(407, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 03:52:11'),
+(408, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 03:53:28'),
+(409, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 03:54:04'),
+(410, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 03:55:16'),
+(411, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 2\".', '2025-01-25 03:56:07'),
+(412, 'A22EC0062', 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 03:56:38'),
+(413, 'A22EC0062', 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 03:56:57'),
+(414, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 2 edit\".', '2025-01-25 03:57:15'),
+(415, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-25 13:23:48'),
+(416, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 13:27:35'),
+(417, 'A22ec0067', 'LEOW YAN HONG logged into the system', '2025-01-25 13:27:52'),
+(418, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 13:34:01'),
+(419, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 2\".', '2025-01-25 13:34:47'),
+(420, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 2\".', '2025-01-25 13:35:48'),
+(421, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 1\".', '2025-01-25 13:35:52'),
+(422, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 1\".', '2025-01-25 13:37:35'),
+(423, 'A22EC0062', 'KUAN JI TONG shared the resource \"Demo 2\".', '2025-01-25 13:38:25'),
+(424, 'A22EC0062', 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 13:39:01'),
+(425, 'A22EC0062', 'KUAN JI TONG edited the resource \"Demo 2 edit\".', '2025-01-25 13:39:28'),
+(426, 'A22EC0062', 'KUAN JI TONG deleted the resource \"Demo 2 edit\".', '2025-01-25 13:39:50'),
+(427, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-26 12:50:41'),
+(428, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-26 17:27:40'),
+(429, 'Admin', 'Admin logged into the system', '2025-01-26 17:27:45'),
+(430, 'ADMIN', 'Admin logged out from the system', '2025-01-26 17:32:43'),
+(431, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-26 17:32:47'),
+(432, 'A22EC0067', 'LEOW YAN HONG logged into the system', '2025-01-26 20:03:25');
 
 -- --------------------------------------------------------
 
@@ -536,6 +685,13 @@ INSERT INTO `user_notification` (`user_email`, `notification_id`, `read_status`)
 ('academicoffice@fc.utm.my', 322, 0),
 ('academicoffice@fc.utm.my', 326, 0),
 ('academicoffice@fc.utm.my', 332, 0),
+('academicoffice@fc.utm.my', 338, 0),
+('academicoffice@fc.utm.my', 344, 0),
+('academicoffice@fc.utm.my', 346, 0),
+('academicoffice@fc.utm.my', 358, 0),
+('academicoffice@fc.utm.my', 359, 0),
+('academicoffice@fc.utm.my', 384, 0),
+('academicoffice@fc.utm.my', 385, 0),
 ('admin@gmail.com', 241, 0),
 ('admin@gmail.com', 242, 0),
 ('admin@gmail.com', 243, 0),
@@ -573,13 +729,19 @@ INSERT INTO `user_notification` (`user_email`, `notification_id`, `read_status`)
 ('kewheng@graduate.utm.my ', 322, 0),
 ('kewheng@graduate.utm.my ', 326, 0),
 ('kewheng@graduate.utm.my ', 332, 0),
+('kewheng@graduate.utm.my ', 338, 0),
+('kewheng@graduate.utm.my ', 344, 0),
+('kewheng@graduate.utm.my ', 358, 0),
+('kewheng@graduate.utm.my ', 359, 0),
+('kewheng@graduate.utm.my ', 384, 0),
+('kewheng@graduate.utm.my ', 385, 0),
 ('kuanjitong99@gmail.com', 224, 0),
 ('kuanjitong99@gmail.com', 225, 0),
 ('kuanjitong99@gmail.com', 226, 0),
 ('kuantong@graduate.utm.my ', 214, 0),
 ('kuantong@graduate.utm.my', 227, 0),
 ('kuantong@graduate.utm.my', 235, 0),
-('kuantong@graduate.utm.my', 236, 0),
+('kuantong@graduate.utm.my', 236, 1),
 ('kwekcong@graduate.utm.my ', 214, 0),
 ('kwekcong@graduate.utm.my ', 238, 0),
 ('kwekcong@graduate.utm.my ', 239, 0),
@@ -607,30 +769,81 @@ INSERT INTO `user_notification` (`user_email`, `notification_id`, `read_status`)
 ('kwekcong@graduate.utm.my ', 322, 0),
 ('kwekcong@graduate.utm.my ', 326, 0),
 ('kwekcong@graduate.utm.my ', 332, 0),
+('kwekcong@graduate.utm.my ', 338, 0),
+('kwekcong@graduate.utm.my ', 344, 0),
+('kwekcong@graduate.utm.my', 352, 0),
+('kwekcong@graduate.utm.my', 353, 0),
+('kwekcong@graduate.utm.my', 354, 0),
+('kwekcong@graduate.utm.my ', 358, 0),
+('kwekcong@graduate.utm.my ', 359, 0),
+('kwekcong@graduate.utm.my', 364, 0),
+('kwekcong@graduate.utm.my', 365, 0),
+('kwekcong@graduate.utm.my', 366, 0),
+('kwekcong@graduate.utm.my', 370, 0),
+('kwekcong@graduate.utm.my', 371, 0),
+('kwekcong@graduate.utm.my', 374, 0),
+('kwekcong@graduate.utm.my', 375, 0),
+('kwekcong@graduate.utm.my', 378, 0),
+('kwekcong@graduate.utm.my', 379, 0),
+('kwekcong@graduate.utm.my', 380, 0),
+('kwekcong@graduate.utm.my ', 384, 0),
+('kwekcong@graduate.utm.my ', 385, 0),
 ('leowhong@graduate.utm.my ', 214, 0),
 ('leowhong@graduate.utm.my ', 238, 0),
 ('leowhong@graduate.utm.my ', 239, 0),
-('leowhong@graduate.utm.my ', 260, 0),
-('leowhong@graduate.utm.my ', 261, 0),
-('leowhong@graduate.utm.my ', 262, 0),
-('leowhong@graduate.utm.my ', 266, 0),
-('leowhong@graduate.utm.my ', 267, 0),
-('leowhong@graduate.utm.my ', 268, 0),
-('leowhong@graduate.utm.my ', 281, 0),
-('leowhong@graduate.utm.my ', 282, 0),
-('leowhong@graduate.utm.my ', 283, 0),
-('leowhong@graduate.utm.my ', 287, 0),
-('leowhong@graduate.utm.my ', 288, 0),
-('leowhong@graduate.utm.my ', 289, 0),
-('leowhong@graduate.utm.my ', 296, 0),
-('leowhong@graduate.utm.my ', 302, 0),
-('leowhong@graduate.utm.my ', 308, 0),
-('leowhong@graduate.utm.my ', 314, 0),
-('leowhong@graduate.utm.my ', 320, 0),
-('leowhong@graduate.utm.my ', 321, 0),
-('leowhong@graduate.utm.my ', 322, 0),
-('leowhong@graduate.utm.my ', 326, 0),
-('leowhong@graduate.utm.my ', 332, 0),
+('leowhong@graduate.utm.my ', 260, 1),
+('leowhong@graduate.utm.my ', 261, 1),
+('leowhong@graduate.utm.my ', 262, 1),
+('leowhong@graduate.utm.my ', 266, 1),
+('leowhong@graduate.utm.my ', 267, 1),
+('leowhong@graduate.utm.my ', 268, 1),
+('leowhong@graduate.utm.my ', 281, 1),
+('leowhong@graduate.utm.my ', 282, 1),
+('leowhong@graduate.utm.my ', 283, 1),
+('leowhong@graduate.utm.my ', 287, 1),
+('leowhong@graduate.utm.my ', 288, 1),
+('leowhong@graduate.utm.my ', 289, 1),
+('leowhong@graduate.utm.my ', 296, 1),
+('leowhong@graduate.utm.my ', 302, 1),
+('leowhong@graduate.utm.my ', 308, 1),
+('leowhong@graduate.utm.my ', 314, 1),
+('leowhong@graduate.utm.my ', 320, 1),
+('leowhong@graduate.utm.my ', 321, 1),
+('leowhong@graduate.utm.my ', 322, 1),
+('leowhong@graduate.utm.my ', 326, 1),
+('leowhong@graduate.utm.my ', 332, 1),
+('leowhong@graduate.utm.my ', 338, 1),
+('leowhong@graduate.utm.my ', 344, 1),
+('leowhong@graduate.utm.my', 347, 1),
+('leowhong@graduate.utm.my', 348, 1),
+('leowhong@graduate.utm.my', 349, 1),
+('leowhong@graduate.utm.my', 350, 1),
+('leowhong@graduate.utm.my', 351, 1),
+('leowhong@graduate.utm.my', 352, 1),
+('leowhong@graduate.utm.my', 353, 1),
+('leowhong@graduate.utm.my', 354, 1),
+('leowhong@graduate.utm.my ', 358, 1),
+('leowhong@graduate.utm.my ', 359, 1),
+('leowhong@graduate.utm.my', 360, 1),
+('leowhong@graduate.utm.my', 361, 1),
+('leowhong@graduate.utm.my', 362, 1),
+('leowhong@graduate.utm.my', 363, 1),
+('leowhong@graduate.utm.my', 364, 1),
+('leowhong@graduate.utm.my', 365, 1),
+('leowhong@graduate.utm.my', 366, 1),
+('leowhong@graduate.utm.my', 370, 1),
+('leowhong@graduate.utm.my', 371, 1),
+('leowhong@graduate.utm.my', 372, 1),
+('leowhong@graduate.utm.my', 373, 1),
+('leowhong@graduate.utm.my', 374, 1),
+('leowhong@graduate.utm.my', 375, 1),
+('leowhong@graduate.utm.my', 376, 1),
+('leowhong@graduate.utm.my', 377, 1),
+('leowhong@graduate.utm.my', 378, 1),
+('leowhong@graduate.utm.my', 379, 1),
+('leowhong@graduate.utm.my', 380, 1),
+('leowhong@graduate.utm.my ', 384, 1),
+('leowhong@graduate.utm.my ', 385, 1),
 ('msmd2@live.utm.my', 214, 0),
 ('msmd2@live.utm.my', 238, 0),
 ('msmd2@live.utm.my', 239, 0),
@@ -655,6 +868,12 @@ INSERT INTO `user_notification` (`user_email`, `notification_id`, `read_status`)
 ('msmd2@live.utm.my', 322, 0),
 ('msmd2@live.utm.my', 326, 0),
 ('msmd2@live.utm.my', 332, 0),
+('msmd2@live.utm.my', 338, 0),
+('msmd2@live.utm.my', 344, 0),
+('msmd2@live.utm.my', 358, 0),
+('msmd2@live.utm.my', 359, 0),
+('msmd2@live.utm.my', 384, 0),
+('msmd2@live.utm.my', 385, 0),
 ('tonianwar@utm.my', 205, 0),
 ('tonianwar@utm.my', 206, 0),
 ('tonianwar@utm.my', 207, 0),
@@ -693,7 +912,14 @@ INSERT INTO `user_notification` (`user_email`, `notification_id`, `read_status`)
 ('tonianwar@utm.my', 321, 0),
 ('tonianwar@utm.my', 322, 0),
 ('tonianwar@utm.my', 326, 0),
-('tonianwar@utm.my', 332, 0);
+('tonianwar@utm.my', 332, 0),
+('tonianwar@utm.my', 338, 0),
+('tonianwar@utm.my', 344, 0),
+('tonianwar@utm.my', 345, 0),
+('tonianwar@utm.my', 358, 0),
+('tonianwar@utm.my', 359, 0),
+('tonianwar@utm.my', 384, 0),
+('tonianwar@utm.my', 385, 0);
 
 --
 -- Indexes for dumped tables
@@ -787,37 +1013,37 @@ ALTER TABLE `user_notification`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=487;
 
 --
 -- AUTO_INCREMENT for table `group_members`
 --
 ALTER TABLE `group_members`
-  MODIFY `group_member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `group_member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
 
 --
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `resource_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `resource_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=433;
 
 --
 -- Constraints for dumped tables
