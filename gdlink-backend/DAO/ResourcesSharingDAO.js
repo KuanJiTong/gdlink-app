@@ -496,7 +496,7 @@ const ResourceSharingDAO = {
                             group_sharing ON resources.resource_id = group_sharing.resource_id
                             AND resources.share_to = 'specific groups'  
                         LEFT JOIN
-                            groups ON group_sharing.group_id = groups.group_id  
+                            \`groups\` ON group_sharing.group_id = groups.group_id  
                         LEFT JOIN
                             sharing ON resources.resource_id = sharing.resource_id
                             AND resources.share_to = 'specific users'  
