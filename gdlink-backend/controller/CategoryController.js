@@ -46,17 +46,6 @@ const CategoryController = {
         }
     },
 
-    async deleteCategory(req, res) {       
-        try {
-            const { categoryId } = req.params;
-            const result = await CategoryService.deleteCategory(categoryId);
-            res.status(200).json(result);
-        } catch (error) {
-            console.error('Error deleting category:', error.message);
-            res.status(500).json({ message: 'Failed to delete category.' });
-        }
-    },
-
     async getCategoryById(req, res) {
         try {
             const { categoryId } = req.params;    

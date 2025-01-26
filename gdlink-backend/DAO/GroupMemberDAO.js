@@ -55,27 +55,6 @@ const GroupMemberDAO = {
         }
     },
 
-    async updateMemberRole(groupMember){
-        const conn = await getConnection();
-        try{
-            const query = 'UPDATE group_members SET role = ? WHERE group_member_id = ?';
-            const result = await conn.query(query,[groupMember.role, groupMember.groupMemberId]);
-            if (result.affectedRows > 0) {
-                return { success: true, message: 'Role updated successfully.' };
-            } else {
-                return { success: false, message: 'Failed to update role. Please try again.' };
-            }
-        }catch(error){
-            console.error('Error occurred while updating role:', error);
-            return {
-                error: true,
-                message: 'An error occurred while updating role. Please try again later.',
-            };
-        }finally{
-            if(conn) conn.release();
-        }
-    },
-
     async removeMember(groupMemberId){
         const conn = await getConnection();
         try{

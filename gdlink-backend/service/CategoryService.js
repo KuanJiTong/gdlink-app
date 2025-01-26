@@ -36,15 +36,6 @@ const CategoryService = {
         return await CategoryDAO.updateCategory(categoryId, categoryName, color, accessibility);
     },
     
-    async deleteCategory(categoryId) {
-        try {
-            return await CategoryDAO.deleteCategory(categoryId);
-        } catch (error) {
-            console.error('Service Error - deleteCategory:', error);
-            throw new Error('Failed to delete category.');
-        }
-    },
-    
     async getCategoryById(categoryId) {       
         try {
             return await CategoryDAO.getCategoryById(categoryId); 

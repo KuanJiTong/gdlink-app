@@ -24,17 +24,6 @@ const GroupMemberService = {
             console.error('Error adding member:', error);
         }
     },
-    async updateMemberRole(groupMember){
-        try {
-            const response = await axios.put(`${API_BASE_URL}/edit`,{
-                groupMember: groupMember
-            });
-            console.log(response.data);
-            return response.data;
-        } catch (error) {
-            console.error('Error updating role:', error);
-        }
-    },
     async removeMember(groupMemberId){
         try {
             const response = await axios.delete(`${API_BASE_URL}/${groupMemberId}/delete`);

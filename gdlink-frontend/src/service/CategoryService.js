@@ -42,18 +42,6 @@ const CategoryService = {
         }
     },
 
-    async deleteCategory(categoryId) {
-        try {
-            const response = await axios.delete(`${API_BASE_URL}/delete/${categoryId}`);
-            console.log('Delete API Response:', response.data); 
-            return response.data;
-        } catch (error) {
-            console.error('Error deleting category:', error);
-            throw error;
-        }
-    },
-
-
     async getCategoryById(categoryId) {
         try {
             const response = await axios.get(`${API_BASE_URL}/get/${categoryId}`); 

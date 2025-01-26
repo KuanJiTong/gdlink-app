@@ -33,20 +33,6 @@ const GroupMemberController = {
         }
     },
 
-    async updateMemberRole(req,res){
-        const groupMember = req.body.groupMember;
-        try{
-            const result = await GroupMemberService.updateMemberRole(groupMember);
-            return res.json(result);
-        } catch (error) {
-            console.error('Controller Error:', error.message); 
-            res.status(500).json({
-              message: 'An error occurred while updating the role',
-              error: error.message, 
-            });
-        }
-    },
-
     async removeMember(req,res){
         const groupMemberId = req.params.groupMemberId;
         try{

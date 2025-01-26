@@ -26,19 +26,6 @@ const GroupMemberService = {
         }
     },
 
-    async updateMemberRole(groupMember){
-        try{
-            return await GroupMemberDAO.updateMemberRole(groupMember);
-        } catch (error) {
-            console.error('Service Error:', error);
-    
-            return {
-                error: true,
-                message: 'An error occurred while updating the role. Please try again later.'
-            };
-        }
-    },
-
     async removeMember(groupMemberId){
         try{
             return await GroupMemberDAO.removeMember(groupMemberId);

@@ -80,27 +80,6 @@ const CategoryDAO = {
             if (conn) conn.release();
         }
     },
-    
-
-    async deleteCategory(categoryId) {
-        const conn = await getConnection();
-        try {
-            const query = 'DELETE FROM category WHERE category_id = ?';
-            const result = await conn.query(query, [categoryId]);
-
-            if (result.affectedRows > 0) {
-                return { success: true, message: 'Resource deleted successfully' };
-            } else {
-                return { success: false, message: 'Resource not found' };
-            }
-            
-        } catch (error) {
-            console.error('Error occurred while deleting category:', error);
-            throw error;
-        } finally {
-            if (conn) conn.release();
-        }
-    },
 
     async getCategoryById(categoryId) {
         const conn = await getConnection();
