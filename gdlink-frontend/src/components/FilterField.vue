@@ -52,7 +52,16 @@ import CategoryService from '@/service/CategoryService';
         },  
       };
     },
-
+    props:{
+      view: {
+        type: String,
+        default: null
+      },
+      userRole: {
+        type: String,
+        default: null
+      }
+    },
     mounted() {
       document.addEventListener('click', this.handleClickOutside);
       this.loadCategories();
@@ -65,6 +74,26 @@ import CategoryService from '@/service/CategoryService';
     methods:{
       async loadCategories(){
         this.categories = await CategoryService.getCategoryList();
+        console.log(this.categories);
+        console.log(this.userRole);
+        if(this.view === 'share'){
+          this.categories = this.filterCategory(this.userRole);
+        }
+      },
+      filterCategory(role){
+        if(role === 'Academic Office'){
+          return this.categories.filter(category => 
+            category.accessibility.includes('staff')
+          );
+        }else if(role === 'Pensyarah'){
+          return this.categories.filter(category => 
+            category.accessibility.includes('lecturer')
+          );
+        }else{
+          return this.categories.filter(category => 
+            category.accessibility.includes('student')
+          );
+        }
       },
       toggleDropdown(type) {
         this.dropdowns[type] = !this.dropdowns[type];

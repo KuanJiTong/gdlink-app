@@ -1,7 +1,7 @@
 <template>
     <DefaultLayout>
         <template #default>
-            <div class="border rounded shadow-sm bg-white vh-100 w-100 p-4" style="overflow-y:auto">
+            <div class="border rounded shadow-sm bg-white w-100 min-height p-4">
                 <div class="d-flex mb-4">
                     <svg class="me-3" width="2.5em" height="2.5em" viewBox="0 0 196 196" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_613_2)">
@@ -163,4 +163,10 @@ export default {
     .bi-trash3{
         color: rgb(194, 0, 0);
     }
+</style>
+
+<style scoped>
+.min-height{
+    min-height:100vh;
+}
 </style>
