@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2025 at 01:15 PM
+-- Generation Time: Jan 26, 2025 at 02:15 PM
 -- Server version: 11.5.2-MariaDB
 -- PHP Version: 8.0.30
 
@@ -101,7 +101,6 @@ CREATE TABLE `group_members` (
   `group_member_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `member_email` varchar(255) NOT NULL,
-  `role` enum('admin','member') DEFAULT 'member',
   `joined_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -109,9 +108,10 @@ CREATE TABLE `group_members` (
 -- Dumping data for table `group_members`
 --
 
-INSERT INTO `group_members` (`group_member_id`, `group_id`, `member_email`, `role`, `joined_at`) VALUES
-(41, 476, 'kwekcong@graduate.utm.my', 'member', '2025-01-23 04:45:38'),
-(42, 476, 'leowhong@graduate.utm.my', 'member', '2025-01-24 19:33:46');
+INSERT INTO `group_members` (`group_member_id`, `group_id`, `member_email`, `joined_at`) VALUES
+(41, 476, 'kwekcong@graduate.utm.my', '2025-01-23 04:45:38'),
+(42, 476, 'leowhong@graduate.utm.my', '2025-01-24 19:33:46'),
+(51, 483, 'kuantong@graduate.utm.my', '2025-01-26 12:18:36');
 
 -- --------------------------------------------------------
 
@@ -363,7 +363,7 @@ INSERT INTO `resources` (`resource_id`, `category_id`, `ref_name`, `sessem`, `de
 (89, 8, 'CC006', '2024/2025-1', 'Coding Competition 6', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:48:38', '2025-01-23 04:48:38', 'all'),
 (90, 8, 'CC007', '2024/2025-1', 'Coding Competition 7', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:49:12', '2025-01-23 05:56:36', 'all'),
 (91, 8, 'CC008', '2024/2025-1', 'Coding Competition 8', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-23 12:49:27', '2025-01-23 05:54:14', 'all'),
-(104, 8, 'Demo 1', '2024/2025-1', 'Demo 1 desc', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-25 13:37:35', '2025-01-26 09:32:52', 'specific users');
+(104, 8, 'Demo 1', '2024/2025-1', 'Demo 1 desc', 'https://drive.google.com/drive/folders/', 'A22EC0062', '2025-01-25 13:37:35', '2025-01-26 12:35:24', 'specific users');
 
 -- --------------------------------------------------------
 
@@ -651,7 +651,11 @@ INSERT INTO `user_log` (`log_id`, `user_id`, `action`, `action_time`) VALUES
 (429, 'Admin', 'Admin logged into the system', '2025-01-26 17:27:45'),
 (430, 'ADMIN', 'Admin logged out from the system', '2025-01-26 17:32:43'),
 (431, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-26 17:32:47'),
-(432, 'A22EC0067', 'LEOW YAN HONG logged into the system', '2025-01-26 20:03:25');
+(432, 'A22EC0067', 'LEOW YAN HONG logged into the system', '2025-01-26 20:03:25'),
+(433, 'A22EC0067', 'LEOW YAN HONG logged out from the system', '2025-01-26 20:21:59'),
+(434, 'A22EC0062', 'KUAN JI TONG logged into the system', '2025-01-26 20:22:03'),
+(435, 'A22EC0062', 'KUAN JI TONG logged out from the system', '2025-01-26 20:35:52'),
+(436, 'Admin', 'Admin logged into the system', '2025-01-26 20:37:25');
 
 -- --------------------------------------------------------
 
@@ -1025,7 +1029,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `group_members`
 --
 ALTER TABLE `group_members`
-  MODIFY `group_member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `group_member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1043,7 +1047,7 @@ ALTER TABLE `resources`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=433;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
 
 --
 -- Constraints for dumped tables
