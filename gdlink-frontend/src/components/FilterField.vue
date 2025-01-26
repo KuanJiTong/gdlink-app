@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center gap-5">
-    <div id="btn-category">
+    <div id="btn-category" class="filter-field">
       <div style="position:relative;">
         <div class="select-btn" @click="toggleDropdown('category')">
           <span class="btn-text">Category</span>
@@ -17,7 +17,7 @@
       </ul>
     </div>
 
-    <div id="btn-semester">
+    <div id="btn-semester" class="filter-field">
       <div style="position:relative;">
         <div class="select-btn" @click="toggleDropdown('semester')">
           <span class="btn-text">Semester</span>
@@ -126,6 +126,12 @@ export default {
 </script>
 
 <style scoped>
+.filter-field{
+  position: relative; 
+  z-index: 1000;
+  width: 160px;
+}
+
 .form-select {
   height: 40px;
   max-width: 150px;
@@ -216,5 +222,9 @@ export default {
 
 .items.checked .check-icon{
   transform: scale(1);
+}
+
+.item-text{
+  line-height: 0.8; 
 }
 </style>
